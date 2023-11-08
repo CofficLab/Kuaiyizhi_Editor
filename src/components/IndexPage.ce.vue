@@ -1,13 +1,17 @@
 <template>
-  <div class="flex flex-col h-full w-full">
+  <div id="index_page">
+    <link rel="stylesheet" href="../dist/app.css?inline" />
+    <h1>Editor</h1>
     <div v-if="loading" class="flex justify-center items-center h-full">
       <Loading></Loading>
     </div>
 
     <div v-else class="flex flex-col">
       <!-- 图书简介 -->
-      <div v-if="node.isBook"
-        class="rounded-2xl bg-base-200 m-12 p-4 container mx-auto flex flex-col gap-4 justify-center">
+      <div
+        v-if="node.isBook"
+        class="rounded-2xl bg-base-200 m-12 p-4 container mx-auto flex flex-col gap-4 justify-center"
+      >
         <div class="flex flex-row gap-2">
           <IconBook class="w-24 h-24"></IconBook>
           <h1 class="text-5xl font-bold flex items-center" v-html="node.title"></h1>
@@ -19,12 +23,15 @@
       </div>
 
       <!-- 编辑器 -->
-      <div>
+      <div id="editor">
         <TiptapEditor v-if="showEditor" :content="node.content" :onUpdate="onUpdate" />
       </div>
 
       <!-- 子节点 -->
-      <div class="container mx-auto px-4 py-4 flex mt-24 justify-center border-t dark:border-gray-700/30" v-if="node.children.length > 0">
+      <div
+        class="container mx-auto px-4 py-4 flex mt-24 justify-center border-t dark:border-gray-700/30"
+        v-if="node.children.length > 0"
+      >
         <NodeCardList :nodes="node.children"></NodeCardList>
       </div>
     </div>
@@ -36,8 +43,9 @@ import TiptapEditor from './TiptapEditor.vue'
 import TreeNode from '../entities/TreeNode'
 import NodeCardList from './NodeCardList.vue'
 import { onMounted, ref } from 'vue'
-import Loading from '../components/Loading.vue'
+import Loading from './Loading.vue'
 import IconBook from '../icons/IconBook.vue'
+import '../app.css'
 
 let isDebug = process.env.NODE_ENV === 'development'
 let loading = ref(false)
@@ -56,7 +64,7 @@ function onUpdate(updatedNode: TreeNode) {
   console.log('调用 WebKit 以更新节点内容')
   setTimeout(() => {
     try {
-      ; (window as any).webkit.messageHandlers.updateContent.postMessage({
+      ;(window as any).webkit.messageHandlers.updateContent.postMessage({
         content: updatedNode.content,
         title: updatedNode.title,
         id: `${updatedNode.id}`,
@@ -91,9 +99,22 @@ onMounted(() => {
 
   console.log('调用 WebKit 以通知 Swift 页面加载完成')
   try {
-    ; (window as any).webkit.messageHandlers.pageLoaded.postMessage({})
+    ;(window as any).webkit.messageHandlers.pageLoaded.postMessage({})
   } catch (e) {
     console.log('调用 WebKit 以通知 Swift 页面加载完成，失败', e)
   }
 })
 </script>
+
+<style lang="postcss">
+#index_page {
+  @apply flex flex-col h-full w-full;
+}
+
+.floating-menu {
+  @apply bg-info/60 rounded-md px-2 py-1 flex items-center;
+  button {
+    @apply btn btn-xs btn-ghost;
+  }
+}
+</style>

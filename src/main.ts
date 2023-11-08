@@ -1,6 +1,4 @@
-import './app.css'
-import { createApp } from 'vue'
-import App from './App.vue'
+import { defineCustomElement } from 'vue'
+import IndexPageVue from './components/IndexPage.ce.vue'
 
-let app = createApp(App)
-app.mount('#app')
+customElements.define('x-index-page', defineCustomElement(IndexPageVue))
