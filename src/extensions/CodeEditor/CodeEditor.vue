@@ -1,8 +1,5 @@
 <template>
-  <NodeViewWrapper
-    contenteditable="false"
-    class="code-editor my-4 overflow-visible rounded relative border-0 border-yellow-600"
-  >
+  <NodeViewWrapper contenteditable="false" class="code-editor">
     <CodeTabs
       :items="items"
       :database="database"
@@ -189,25 +186,3 @@ function setLanguage(language: string) {
   })
 }
 </script>
-
-<style lang="postcss">
-ul.menu {
-  @apply p-0 bg-base-200 w-24 mt-0 dropdown-content border-0 border-red-950 !important;
-
-  li {
-    @apply m-0 p-0 rounded-none !important;
-
-    a {
-      @apply no-underline rounded-none text-xs;
-    }
-  }
-}
-
-.operation-bar {
-  @apply bg-black/90 flex flex-row justify-end;
-
-  .dropdown label {
-    @apply btn hover:bg-gray-600 font-normal btn-sm p-0 px-2 m-0 btn-ghost text-white rounded-none;
-  }
-}
-</style>

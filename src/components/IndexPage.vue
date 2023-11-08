@@ -1,7 +1,7 @@
 <template>
   <div id="index_page">
-    <link rel="stylesheet" href="../dist/app.css?inline" />
-    <h1>Editor</h1>
+    <link rel="stylesheet" href="../src/app.css" />
+
     <div v-if="loading" class="flex justify-center items-center h-full">
       <Loading></Loading>
     </div>
@@ -105,16 +105,3 @@ onMounted(() => {
   }
 })
 </script>
-
-<style lang="postcss">
-#index_page {
-  @apply flex flex-col h-full w-full;
-}
-
-.floating-menu {
-  @apply bg-info/60 rounded-md px-2 py-1 flex items-center;
-  button {
-    @apply btn btn-xs btn-ghost;
-  }
-}
-</style>

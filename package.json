@@ -23,6 +23,7 @@
     "monaco-editor": "^0.44.0",
     "sass": "^1.69.5",
     "scss": "^0.2.4",
+    "twind": "^0.16.19",
     "vue": "^3.3.7"
   },
   "devDependencies": {

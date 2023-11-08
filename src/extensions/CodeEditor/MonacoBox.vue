@@ -11,7 +11,7 @@
         v-show="runnable"
       ></button> -->
 
-      <div id="xxx" ref="codeDom" class="relative z-10 rounded-md" contenteditable="true"></div>
+      <div ref="codeDom" class="relative z-10 rounded-md" contenteditable="true"></div>
     </div>
 
     <!-- 展示运行结果 -->
